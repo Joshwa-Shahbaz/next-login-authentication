@@ -4,7 +4,7 @@ import React from "react";
 // useAuth
 import useAuth from "@/utils/hooks/useAuth";
 
-const signup = () => {
+const Signup = () => {
   const { user } = useAuth({
     redirectOn: "login",
     redirectTo: "/login",
@@ -17,4 +17,4 @@ const signup = () => {
   return <SignupForm />;
 };
 
-export default signup;
+export default Signup;

@@ -1,13 +1,13 @@
-//imports from react
-import React, { useContext, useEffect } from "react";
+// imports from react
+import React, { useContext } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 
-//context api
+// context api
 import { AuthContext } from "../../../context/AuthContext";
 
-const SignupFrom = () => {
+const SignupForm = () => {
   let { signup, emailError, passwordError } = useContext(AuthContext);
   const router = useRouter();
 
@@ -27,15 +27,15 @@ const SignupFrom = () => {
   };
 
   return (
-    <section className=" dark:bg-gray-900">
-      <div className="flex flex-col items-center relative top-[50px] px-6 py-5 mx-auto  lg:py-0">
+    <section className="dark:bg-gray-900">
+      <div className="flex flex-col items-center relative top-[50px] px-6 py-5 mx-auto lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white flex justify-center">
               Sign Up
             </h1>
             <p className="block text-[14px] text-[#33363D]">
-              It's quick and easy
+              It is quick and easy
             </p>
             <form
               className="space-y-4 md:space-y-6"
@@ -79,11 +79,11 @@ const SignupFrom = () => {
                   })}
                 />
                 <p>{passwordError}</p>
-                {errors.email && <span></span>}
+                {errors.password && <span></span>}
               </div>
               <button
                 type="submit"
-                className="w-full text-white  bg-orange font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                className="w-full text-white bg-orange font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Sign up
               </button>
@@ -91,9 +91,9 @@ const SignupFrom = () => {
                 sign in to your account
                 <Link
                   href="/login"
-                  className="font-medium  hover:underline text-orange"
+                  className="font-medium hover:underline text-orange"
                 >
-                  Sign in
+                  &nbsp;Sign in
                 </Link>
               </p>
             </form>
@@ -104,4 +104,4 @@ const SignupFrom = () => {
   );
 };
 
-export default SignupFrom;
+export default SignupForm;

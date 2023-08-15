@@ -9,7 +9,7 @@ type UseAuthArgs = {
   redirectTo: string;
 };
 
-const useAuth = ({ redirectOn, redirectTo }: UseAuthArgs) => {
+const UseAuth = ({ redirectOn, redirectTo }: UseAuthArgs) => {
   const { user, authChecked } = useContext(AuthContext);
   const router = useRouter();
 
@@ -27,4 +27,4 @@ const useAuth = ({ redirectOn, redirectTo }: UseAuthArgs) => {
   return { user, authChecked };
 };
 
-export default useAuth;
+export default UseAuth;
