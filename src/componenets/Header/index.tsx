@@ -1,27 +1,27 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import useAuth from "@/utils/hooks/useAuth";
 
 const Header = () => {
-  let { user, logout } = useContext(AuthContext);
-  const router = useRouter();
+  let { logout } = useContext(AuthContext);
+  const { user } = useAuth({ redirectOn: "logout", redirectTo: "/login" });
+
   return (
     <header>
       <nav className=" px-4 lg:px-6 py-2.5">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-          <a href="/" className="flex items-center text-yellow text-[25px]">
+          <Link href="/" className="flex items-center text-yellow text-[25px]">
             <span className="self-center  font-semibold whitespace-nowrap dark:text-white">
               <span className="text-orange">FireBase</span> login
             </span>
-          </a>
+          </Link>
           <div className="flex items-center lg:order-2">
             {user ? (
               <>
                 <button
                   onClick={() => {
                     logout();
-                    router.push("/login");
                   }}
                   className="text-white bg-orange font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 "
                 >

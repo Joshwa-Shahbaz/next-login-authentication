@@ -1,6 +1,5 @@
 //imports from react
-import React, { useContext, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useContext } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 
@@ -9,7 +8,6 @@ import { AuthContext } from "../../../context/AuthContext";
 
 const LoginForm = () => {
   let { login, emailError, passwordError } = useContext(AuthContext);
-  const router = useRouter();
 
   const {
     register,
@@ -22,7 +20,6 @@ const LoginForm = () => {
     try {
       await login(data.email, data.password);
       console.log("success");
-      router.push("/dashboard");
     } catch (error) {
       console.log(error);
     }

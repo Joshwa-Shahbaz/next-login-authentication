@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../context/AuthContext";
 
 const SignupFrom = () => {
-  let { user, signup, emailError, passwordError } = useContext(AuthContext);
+  let { signup, emailError, passwordError } = useContext(AuthContext);
   const router = useRouter();
 
   const {
@@ -93,7 +93,7 @@ const SignupFrom = () => {
                   href="/login"
                   className="font-medium  hover:underline text-orange"
                 >
-                  &nbsp;Sign in
+                  Sign in
                 </Link>
               </p>
             </form>
