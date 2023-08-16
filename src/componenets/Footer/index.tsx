@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="relative bg-blueGray-200 pt-8 pb-6 top-[230px]">
+    <footer className="absolute w-screen bg-blueGray-200 pt-8 pb-6 bottom-0">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap text-left lg:text-left">
           <div className="w-full lg:w-6/12 px-4">
@@ -31,12 +31,12 @@ const Footer = () => {
                 </span>
                 <ul className="list-unstyled">
                   <li>
-                    <a
+                    <Link
                       className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
-                      href="https://www.creative-tim.com/presentation?ref=njs-profile"
+                      href="#"
                     >
                       About Us
-                    </a>
+                    </Link>
                   </li>
                   {/* Add other useful links here */}
                 </ul>
@@ -47,12 +47,12 @@ const Footer = () => {
                 </span>
                 <ul className="list-unstyled">
                   <li>
-                    <a
+                    <Link
                       className="text-blueGray-600 hover:text-blueGray-800 font-semibold block pb-2 text-sm"
                       href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile"
                     >
                       MIT License
-                    </a>
+                    </Link>
                   </li>
                   {/* Add other resources links here */}
                 </ul>
@@ -64,7 +64,7 @@ const Footer = () => {
         <div className="flex flex-wrap items-center md:justify-between justify-center">
           <div className="w-full md:w-4/12 px-4 mx-auto text-center">
             <div className="text-sm text-blueGray-500 font-semibold py-1">
-              Copyright ©{" "}
+              Copyright ©
               <span id="get-current-year">{new Date().getFullYear()}</span>
               <Link href="#" className="text-blueGray-500 hover:text-gray-800">
                 Notus JS by
