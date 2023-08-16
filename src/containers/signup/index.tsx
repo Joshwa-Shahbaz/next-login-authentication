@@ -19,7 +19,7 @@ const SignupForm = () => {
 
   const onSignup = async (data: any) => {
     try {
-      await signup(data.email, data.password);
+      await signup(data.email, data.password, data.userName, data.fullName);
       router.push("/login");
     } catch (error) {
       console.log(error);
@@ -34,13 +34,45 @@ const SignupForm = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white flex justify-center">
               Sign Up
             </h1>
-            <p className="block text-[14px] text-[#33363D]">
+            {/* <p className="block text-[14px] text-[#33363D]">
               It is quick and easy
-            </p>
+            </p> */}
             <form
               className="space-y-4 md:space-y-6"
               onSubmit={handleSubmit(onSignup)}
             >
+              <div className="flex justify-around">
+                <div className="mb-[0.125rem]  min-h-[1.5rem] pl-[1.5rem]">
+                  <input
+                    className="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-orange before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-orange checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04]"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="radioDefault01"
+                  />
+                  <label
+                    className="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
+                    htmlFor="radioDefault01"
+                  >
+                    Talent
+                  </label>
+                </div>
+                <div className="mb-[0.125rem] min-h-[1.5rem] pl-[1.5rem]">
+                  <input
+                    className="relative float-left -ml-[1.5rem] mr-1 mt-0.5 h-5 w-5 appearance-none rounded-full border-2 border-solid border-orange before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-primary checked:after:bg-orange checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04]"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="radioDefault02"
+                    checked
+                  />
+                  <label
+                    className="mt-px inline-block pl-[0.15rem] hover:cursor-pointer"
+                    htmlFor="radioDefault02"
+                  >
+                    Admin
+                  </label>
+                </div>
+              </div>
+
               <div>
                 <label
                   htmlFor="email"

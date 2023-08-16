@@ -1,5 +1,5 @@
 //imports from react
-import { ReactNode, createContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useEffect, useId, useState } from "react";
 
 //imports from firebase
 import {
@@ -8,12 +8,20 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+
+import { doc, setDoc } from "firebase/firestore";
+
 //config/firebase
-import { auth } from "../config/firebase";
+import { auth, firestore } from "../config/firebase";
 
 export const AuthContext = createContext({
   user: null,
-  signup: (email: string, password: string) => {},
+  signup: (
+    email: string,
+    password: string,
+    fullName: string,
+    userName: string
+  ) => {},
   login: (email: string, password: string) => {},
   logout: () => {},
   authChecked: false,
@@ -48,23 +56,42 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
     return () => unsubscribe();
   }, []);
 
-  const signup = (email: string, password: string) => {
+  const signup = async (
+    email: string,
+    password: string,
+    userName: string,
+    fullName: string
+  ) => {
     clearError();
-    return createUserWithEmailAndPassword(auth, email, password).catch(
-      (err) => {
-        switch (err.code) {
-          case "auth/email-already-in-use":
-          case "auth/invalid-email":
-            setEmailError(err.message);
-            break;
-          case "auth/weak-password":
-            setPasswordError(err.message);
-            break;
-          default:
-            console.error("Signup error:", err);
-        }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const uid = userCredential.user.uid;
+      console.log("uid>>>>>>>>>>>", uid);
+      const userDocRef = doc(firestore, "users", uid);
+      console.log("userCredential>>>>>>>", userCredential);
+      await setDoc(userDocRef, {
+        userName: userName,
+        fullName: fullName,
+        email,
+      });
+    } catch (err: any) {
+      switch (err.code) {
+        case "auth/email-already-in-use":
+        case "auth/invalid-email":
+          setEmailError(err.message);
+          break;
+        case "auth/weak-password":
+          setPasswordError(err.message);
+          break;
+        default:
+          console.error("Signup error:", err);
       }
-    );
+    }
   };
 
   const login = (email: string, password: string) => {
