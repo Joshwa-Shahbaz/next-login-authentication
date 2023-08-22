@@ -22,7 +22,7 @@ const UseAuth = ({ redirectOn, redirectTo }: UseAuthArgs) => {
         router.push(redirectTo);
       }
     }
-  }, [user, authChecked]);
+  }, [user, authChecked, redirectOn, router, redirectTo]);
 
   return { user, authChecked };
 };
