@@ -14,13 +14,16 @@ import { doc, setDoc } from "firebase/firestore";
 //config/firebase
 import { auth, firestore } from "../config/firebase";
 
+type UserType = Record<string, any> | null;
+
 export const AuthContext = createContext({
-  user: null,
+  user: null as UserType,
   signup: (
     email: string,
     password: string,
     fullName: string,
-    userName: string
+    userName: string,
+    status: string
   ) => {},
   login: (email: string, password: string) => {},
   logout: () => {},
@@ -60,7 +63,8 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
     email: string,
     password: string,
     userName: string,
-    fullName: string
+    fullName: string,
+    status: string
   ) => {
     clearError();
     try {
@@ -78,6 +82,7 @@ export function AuthContextProvider({ children }: { children: ReactNode }) {
         userName: userName,
         fullName: fullName,
         email,
+        status,
       });
     } catch (err: any) {
       switch (err.code) {
